@@ -1,0 +1,164 @@
+call plug#begin()
+
+Plug 'http://github.com/tpope/vim-surround' " Surrounding ysw)
+Plug 'https://github.com/preservim/nerdtree' " NerdTree
+Plug 'https://github.com/tpope/vim-commentary' " For Commenting gcc & gc
+Plug 'https://github.com/itchyny/lightline.vim' " Status bar
+Plug 'https://github.com/unblevable/quick-scope' " Quick scope with find f key
+Plug 'nvim-lua/plenary.nvim' " Dependency for telescope
+Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' } " Better Fuzzy Finder
+" or                                , { 'branch': '0.1.x' }
+"Plug 'https://github.com/vim-airline/vim-airline' " Status bar
+Plug 'https://github.com/ap/vim-css-color' " CSS Color Preview
+"Plug 'https://github.com/rafi/awesome-vim-colorschemes' " Retro Scheme
+"Plug 'https://github.com/neoclide/coc.nvim'  " Auto Completion and Language
+"Server
+Plug 'https://github.com/ryanoasis/vim-devicons' " Developer Icons
+" Plug 'https://github.com/tc50cal/vim-terminal' " Vim Terminal
+Plug 'https://github.com/preservim/tagbar' " Tagbar for code navigationj
+"Plug 'https://github.com/terryma/vim-multiple-cursors' " CTRL + N for multiple cursors
+Plug 'https://github.com/junegunn/fzf'  " Fuzzy Finder
+Plug 'https://github.com/junegunn/fzf.vim' " Fuzzy Finder.vim
+Plug 'https://github.com/lambdalisue/suda.vim' " Save/Write file as sudo
+" Plug 'https://github.com/lambdalisue/askpass.vim' " Ask pass
+" Plug 'junegunn/rainbow_parentheses.vim'
+Plug 'luochen1990/rainbow' " Colored braces levels
+Plug 'Yggdroot/indentLine' " Show indent lines
+Plug 'akinsho/toggleterm.nvim', {'tag' : 'v1.*'} " NVIM Toggle Terminal
+
+set encoding=UTF-8
+
+call plug#end()
+
+" --- Just Some Notes ---
+" :PlugClean :PlugInstall :UpdateRemotePlugins
+
+:set number
+:set relativenumber
+:set autoindent
+:set tabstop=4
+:set shiftwidth=4
+:set smarttab
+:set softtabstop=4
+:set mouse=a
+
+syntax on
+
+nmap <F8> :TagbarToggle<CR>
+
+" Remap '"+y' and '"+p' for system clipboard 
+vnoremap <C-c> "+y
+map <C-P> "+P
+
+" Copy to both system clipboard and 'primary selection' (linux special clipboard)
+vnoremap <C-c> "*y :let @+=@*<CR>
+
+" quit discarding changes
+inoremap <C-q> <esc>:qa!<cr>   
+nnoremap <C-q> :qa!<cr>
+
+
+
+" Stop vim from autocommenting on Enter
+autocmd BufNewFile,BufRead * setlocal formatoptions-=r
+"inoremap <expr> <enter> getline('.') =~ '^\s*//' ? '<enter><esc>S' : '<enter>'
+"inoremap <expr> <enter> getline('.') =~ '^\s*\"' ? '<enter><esc>S' : '<enter>'
+"nnoremap <expr> O getline('.') =~ '^\s*//' ? 'O<esc>S' : 'O'
+"nnoremap <expr> o getline('.') =~ '^\s*//' ? 'o<esc>S' : 'o'
+" End Autocomment stop
+
+
+
+
+
+
+"inoremap <expr> <Tab> pumvisible() ? coc#_select_confirm() : "<Tab>"
+
+" Plugin Settings
+"=======================================================================================
+
+" Rainbow Parentheses Improved
+let g:rainbow_active = 1 "set to 0 if you want to enable it later via :RainbowToggle
+" End Rainbow Parentheses Improved
+
+" Lightline Plugin config
+set laststatus=2
+let g:lightline = {
+      \ 'colorscheme': 'one',
+      \ }
+" End Lightline
+
+" NerdTree
+let g:NERDTreeDirArrowExpandable="+"
+let g:NERDTreeDirArrowCollapsible="~"
+nnoremap <C-f> :NERDTreeFocus<CR>
+nnoremap <C-n> :NERDTree<CR>
+nnoremap <C-t> :NERDTreeToggle<CR>
+" End NerdTree
+
+
+" Quickscope
+" Trigger a highlight in the appropriate direction when pressing these keys:
+let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
+highlight QuickScopePrimary guifg='#afff5f' gui=underline ctermfg=155 cterm=underline
+highlight QuickScopeSecondary guifg='#5fffff' gui=underline ctermfg=8 cterm=underline
+" End Quickscope
+
+" ToggleTerm
+" Keymaps
+
+" End ToggleTerm
+
+
+" Sudavim
+"suda is a plugin to read or write files with sudo command.
+"
+"This plugin was built while :w !sudo tee % > /dev/null trick does not work on neovim.
+"
+"neovim/neovim#1716
+"
+"This plugin is strongly inspired by sudo.vim but the interfaces was aggressively modified for modern Vim script.
+"
+"Usage
+"Use SudaRead to open unreadable files like:
+"
+"" Re-open a current file with sudo
+":SudaRead
+"
+"" Open /etc/sudoers with sudo
+":SudaRead /etc/sudoers
+"Or SudaWrite to write unwritable files like:
+"
+"" Forcedly save a current file with sudo
+":SudaWrite
+"
+"" Write contents to /etc/profile
+":SudaWrite /etc/profile
+"You can change the prompt string with g:suda#prompt.
+"
+"" 'Password' in french
+"let g:suda#prompt = 'Mot de passe: '
+
+
+
+" Air-line
+"#let g:airline_powerline_fonts = 1
+"
+"if !exists('g:airline_symbols')
+"    let g:airline_symbols = {}
+"endif
+"
+"" airline symbols
+"let g:airline_left_sep = ''
+"let g:airline_left_alt_sep = ''
+"let g:airline_right_sep = ''
+"let g:airline_right_alt_sep = ''
+"let g:airline_symbols.branch = ''
+"let g:airline_symbols.readonly = ''
+"let g:airline_symbols.linenr = ''
+" End Airline
+
+
+"nnoremap <C-l> :call CocActionAsync('jumpDefinition')<CR>
+
+" Comment goes here
