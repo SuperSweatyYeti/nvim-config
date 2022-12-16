@@ -88,6 +88,8 @@ return packer.startup(function(use)
         })
     end
 })
+  -- Multi-cursor
+  use { "mg979/vim-visual-multi" }
 
 
   -- Braces Auto-pairs (Only use if not usign coq. IF using coc then use ":CocInstall coc-snippets" instead)
